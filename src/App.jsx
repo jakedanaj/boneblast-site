@@ -28,15 +28,39 @@ class App extends Component {
         });
     };
 
+    ordinal_suffix_of(i) {
+        var j = i % 10,
+            k = i % 100;
+        if (j == 1 && k != 11) {
+            return i + "st";
+        }
+        if (j == 2 && k != 12) {
+            return i + "nd";
+        }
+        if (j == 3 && k != 13) {
+            return i + "rd";
+        }
+        return i + "th";
+    }
+
   render() {
     return (
-        <div>
-
-          <ol>
-              {this.state.users.map(user => {
-                  return <li>{user.name + ": " + user.score}</li>
-              })}
-          </ol>
+        <div align="center" background="">
+            <h1>Bone Blast Scoreboard</h1>
+            <table border>
+                <tr>
+                    <th>Place</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                </tr>
+                {this.state.users.map((user, index) => {
+                    return <tr>
+                        <td align="right" className="place">{this.ordinal_suffix_of(index+1)}</td>
+                        <td align="left">{user.name}</td>
+                        <td align="left">{user.score}</td>
+                    </tr>
+                })}
+            </table>
         </div>
     )
   }
