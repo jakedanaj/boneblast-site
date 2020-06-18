@@ -19,7 +19,7 @@ class App extends Component {
           tempUsers = O2A(snapshot);
           var i;
           for(i = 0; i < tempUsers.length; i++) {
-              tempUsers[i] = tempUsers[i].score.parseInt();
+              console.log(tempUsers[i].score)
           }
             const sortObjectsArray = require('sort-objects-array');
             sortObjectsArray(tempUsers, 'score', 'desc');
