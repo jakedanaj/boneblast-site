@@ -20,9 +20,9 @@ class App extends Component {
           var i;
           for(i = 0; i < tempUsers.length; i++) {
               console.log(tempUsers[i].score)
+              tempUsers[i].score = Number.parseInt(tempUsers[i].score, 10);
           }
-            const sortObjectsArray = require('sort-objects-array');
-            sortObjectsArray(tempUsers, 'score', 'desc');
+          tempUsers.sort((a, b) => (a.score < b.score) ? 1 : (a.score === b.score) ? ((a.score < b.score) ? 1 : -1) : -1 );
           this.setState({users: tempUsers});
           console.log(tempUsers)
         });
@@ -31,6 +31,7 @@ class App extends Component {
   render() {
     return (
         <div>
+
           <ol>
               {this.state.users.map(user => {
                   return <li>{user.name + ": " + user.score}</li>
